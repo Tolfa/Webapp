@@ -1,0 +1,70 @@
+block content
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    title Leaderboard
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+body
+    script(src='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')
+    script(src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')
+
+    script(src='http://code.jquery.com/jquery.js')
+    script(src='js/bootstrap.min.js')
+    .container
+        .jumbotron
+            h2 Leaderboard
+        table#pickle.table.table-hover.table-striped.table-bordered
+            thead
+                tr
+                    th #
+                    th Name
+                    th Punkte
+            tbody
+                tr
+                    th(scope='row') 1
+                    td #{Person0}
+                    td #{Punkte0}
+                tr
+                    th(scope='row') 2
+                    td #{Person1}
+                    td #{Punkte1}
+                tr
+                    th(scope='row') 3
+                    td #{Person2}
+                    td #{Punkte2}
+                tr
+                    th(scope='row') 4
+                    td #{Person3}
+                    td #{Punkte3}
+                tr
+                    th(scope='row') 5
+                    td #{Person4}
+                    td #{Punkte4}
+                tr
+                    th(scope='row') 6
+                    td #{Person5}
+                    td #{Punkte5}
+                tr
+                    th(scope='row') 7
+                    td #{Person6}
+                    td #{Punkte6}
+                tr
+                    th(scope='row') 8
+                    td #{Person7}
+                    td #{Punkte7}
+                tr
+                    th(scope='row') 9
+                    td #{Person8}
+                    td #{Punkte8}
+                tr
+                    th(scope='row') 10
+                    td #{Person9}
+                    td #{Punkte9}
+script.
+    $(document).ready(function() {
+        $('#pickle').DataTable();
+    });
