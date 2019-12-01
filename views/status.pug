@@ -16,5 +16,11 @@ body
     script(src='js/bootstrap.min.js')
     .container
         .jumbotron
-            h2 current Status
-        text Du übertriffst xy% der Studenten mit deiner Punktzahl.
+            h2 current Status 
+        form(method='POST' action='/status')
+            div.form-group
+                div
+                    label(for='code') Punkte:
+                    input#name.form-control(type='text' name='code' required='' value='')
+                input(type="submit")
+        text Du übertriffst #{Percentage}% der Studenten mit deiner Punktzahl.

@@ -31,6 +31,10 @@ app.get("/", function (req, res) {
   res.send("Hello World!");
 });
 
+
+
+
+
 app.get("/leaderboard", function (req, res) {
 
   MongoClient.connect(url, function (err, db) {
@@ -44,12 +48,7 @@ app.get("/leaderboard", function (req, res) {
       console.log(result);
       });
       */
-    /*
-        var leaderboard = dbo.collection(COLLECTION_STUDENTS).find({ score: { $exists: true } }).sort({ score: -1 }).limit(4).toArray()
-        setTimeout(function () {
-          console.log(leaderboard);
-        }, 2000);
-    */
+
     function promise_go_away(a) {
       var Person0 = a[0].Code;
       var Person1 = a[1].Code;
@@ -104,7 +103,6 @@ app.get("/leaderboard", function (req, res) {
     var leaderboard = dbo.collection("Punkte").find({ Punkte: { $exists: true } }).sort({ Punkte: -1 }).limit(10).toArray()
 
     leaderboard.then(promise_go_away)
-
     db.close();
   });
 });
@@ -117,14 +115,17 @@ app.get("/goals", function (req, res) {
     message: "Studenten Leaderboard",
     students: students
   });
-  return res.status(200);
+  return res.status(1000);
 });
 
 app.post("/goals", function (req, res) {
-  console.log(req.body);
+  console.log(req.body.code);
+
   // console.log(req);
   MongoClient.connect(url, function (err, db) {
+
     var dbo = db.db("leaderboard");
+
     dbo.collection(COLLECTION_STUDENTS).insertOne(req.body, function (err, res) {
       if (err) throw err;
       console.log("1 document inserted");
@@ -134,25 +135,45 @@ app.post("/goals", function (req, res) {
 });
 
 
+
 app.get("/status", function (req, res) {
+  res.render("status", {
+    title: "Status",
+    message: "Performance",
+  });
+  return res.status(200);
+});
+
+app.post("/status", function (req, res) {
   MongoClient.connect(url, function (err, db) {
 
-    var dbo = db.db("leaderboard");
-    
-    function nopromise(a) {
-      var Percentage = a.Code;
+    async function helpMe(a, b) {
+      resolve_a = await a;
+      resolve_b = await b;
+      percentage_of_this = (resolve_a.length) * 100 / resolve_b.length;
+      return percentage_of_this
     }
-    res.render("status", {
-      title: "Aktueller Status",
-      message: "Aktueller Status",
-      students: students
-    });
-    var status = dbo.collection("Punkte").find({ score: { $lt: 50 } }).toArray() //funktioniert nicht...
-    status.then(nopromise)
-    console.log(status)
-    db.close();
 
-    return res.status(200);
+    var dbo = db.db("leaderboard");
+
+
+
+    function nopromise(a) {
+      var Percentage = a;
+
+      res.render("status", {
+        title: "Aktueller Status",
+        message: "Aktueller Status",
+        Percentage: Percentage
+      });
+    }
+
+    var status = dbo.collection("Punkte").find({ Punkte: { $lt: parseInt(req.body.code, 10) } }).toArray();
+    var alles = dbo.collection("Punkte").find({ Punkte: { $gte: 0 } }).toArray();
+
+    helpMe(status, alles).then(nopromise);
+
+    db.close();
 
   });
 });

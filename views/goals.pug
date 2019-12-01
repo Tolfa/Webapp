@@ -16,13 +16,17 @@ body
     script(src='js/bootstrap.min.js')
     .container
         .jumbotron
-            h2 Wieviele Punkte möchtest du erreichen?
+            h2 Wie viele Punkte möchtest du erreichen?
         form(method='POST' action='/goals')
             div.form-group
                 div
-                    label(for='code') Code:
-                    input#name.form-control(type='text' name='code' required='' value='')
+                    input#name.form-control(type="text" name="foo" style="display: none;")
+                div
+                    label(for='code') Code (6-stellig):
+                    input#name.form-control(type='text' name='code' required='' value='' placeholder="Code aus ersten beiden Buchstaben des Vornamens der Mutter, des Vaters und des Geburtsmonats")
                 div 
                     label(for='score') Zielpunkte:
-                    input#name.form-control(type='text' name='score' required='' value='')
+                    input#name.form-control(type='text' name='score' required='' value='' placeholder="Zielpunktzahl")
+                div
+                    | &nbsp;
                 input(type="submit")
