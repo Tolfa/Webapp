@@ -150,7 +150,7 @@ app.post("/status", function (req, res) {
     async function helpMe(a, b) {
       resolve_a = await a;
       resolve_b = await b;
-      percentage_of_this = (resolve_a.length) * 100 / resolve_b.length;
+      percentage_of_this = ((resolve_a.length) * 100 / resolve_b.length).toFixed(2);
       return percentage_of_this
     }
 
