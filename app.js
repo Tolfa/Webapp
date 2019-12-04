@@ -41,14 +41,6 @@ app.get("/leaderboard", function (req, res) {
     if (err) throw err;
     var dbo = db.db("leaderboard");
 
-    /*
-    var query = { code: "Lukas" };
-    dbo.collection(COLLECTION_STUDENTS).find(query).toArray(function(err, result) {
-      if (err) throw err;
-      console.log(result);
-      });
-      */
-
     function promise_go_away(a) {
       var Person0 = a[0].Code;
       var Person1 = a[1].Code;
@@ -151,7 +143,12 @@ app.post("/status", function (req, res) {
       resolve_a = await a;
       resolve_b = await b;
       percentage_of_this = ((resolve_a.length) * 100 / resolve_b.length).toFixed(2);
-      return percentage_of_this
+      if(percentage_of_this>40){
+        outputtext = 'Du übertriffst ' + percentage_of_this + '% der Studenten mit deiner Punktzahl.'
+      } else {
+        outputtext = 'Du bist unter den unteren 40%.'
+      }
+      return outputtext
     }
 
     var dbo = db.db("leaderboard");
