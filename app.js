@@ -33,8 +33,6 @@ app.get("/", function (req, res) {
 
 
 
-
-
 app.get("/leaderboard", function (req, res) {
 
   MongoClient.connect(url, function (err, db) {
@@ -100,6 +98,14 @@ app.get("/leaderboard", function (req, res) {
 });
 
 
+app.get("/thanks", function (req, res) {
+  res.render("thanku", {
+    title: "Danke",
+    message: "Vielen Dank für deine Teilnahme!s",
+  });
+  return res.status(1000);
+});
+
 
 app.get("/goals", function (req, res) {
   res.render("goals", {
@@ -110,18 +116,19 @@ app.get("/goals", function (req, res) {
   return res.status(1000);
 });
 
-app.post("/goals", function (req, res) {
+app.post("/goals", function(req, response) {
   console.log(req.body.code);
 
   // console.log(req);
-  MongoClient.connect(url, function (err, db) {
-
+  MongoClient.connect(url, function(err, db) {
     var dbo = db.db("leaderboard");
 
-    dbo.collection(COLLECTION_STUDENTS).insertOne(req.body, function (err, res) {
+    dbo.collection(COLLECTION_STUDENTS).insertOne(req.body, function(err, res) {
       if (err) throw err;
       console.log("1 document inserted");
       db.close();
+      response.status(200);
+      return response.redirect("/thanks");
     });
   });
 });

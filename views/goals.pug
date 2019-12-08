@@ -21,10 +21,10 @@ body
             div.form-group
                 div
                     label(for='code') ID (6-stellig):
-                    input#name.form-control(type='text' name='code' required='' value='' placeholder="Code aus ersten beiden Buchstaben des Vornamens der Mutter, des Vaters und des Geburtsmonats")
+                    input#name.form-control(type='text' name='code' required='' value='' maxlength='6' placeholder="Code aus ersten beiden Buchstaben des Vornamens der Mutter, des Vaters und des Geburtsmonats")
                 div 
                     label(for='score') Zielpunkte:
-                    input#name.form-control(type='text' name='score' required='' value='' placeholder="Zielpunktzahl")
+                    input#name.form-control(type='number' name='score' required='' value='' placeholder="Zielpunktzahl")
                 div
                     | &nbsp;
                 input(type="submit")
