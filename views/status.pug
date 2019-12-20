@@ -21,7 +21,7 @@ body
             div.form-group
                 div
                     label(for='code') Punkte:
-                    input#name.form-control(type='text' name='code' required='' value='', placeholder='Erreichte Punktzahl')
+                    input#name.form-control(type='number' name='code' required='' value='' min='0', placeholder='Erreichte Punktzahl')
                 div
                     | &nbsp;
                 input(type="submit")
