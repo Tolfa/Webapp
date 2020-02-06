@@ -50,6 +50,16 @@ app.get("/leaderboard", function (req, res) {
       var Person7 = a[7].Code;
       var Person8 = a[8].Code;
       var Person9 = a[9].Code;
+      var Person10 = a[10].Code;
+      var Person11 = a[11].Code;
+      var Person12 = a[12].Code;
+      var Person13 = a[13].Code;
+      var Person14 = a[14].Code;
+      var Person15 = a[15].Code;
+      var Person16 = a[16].Code;
+      var Person17 = a[17].Code;
+      var Person18 = a[18].Code;
+      var Person19 = a[19].Code;
 
       var Punkte0 = a[0].Punkte;
       var Punkte1 = a[1].Punkte;
@@ -61,6 +71,16 @@ app.get("/leaderboard", function (req, res) {
       var Punkte7 = a[7].Punkte;
       var Punkte8 = a[8].Punkte;
       var Punkte9 = a[9].Punkte;
+      var Punkte10 = a[10].Punkte;
+      var Punkte11 = a[11].Punkte;
+      var Punkte12 = a[12].Punkte;
+      var Punkte13 = a[13].Punkte;
+      var Punkte14 = a[14].Punkte;
+      var Punkte15 = a[15].Punkte;
+      var Punkte16 = a[16].Punkte;
+      var Punkte17 = a[17].Punkte;
+      var Punkte18 = a[18].Punkte;
+      var Punkte19 = a[19].Punkte;
 
 
       res.render("leaderboard", {
@@ -77,6 +97,16 @@ app.get("/leaderboard", function (req, res) {
         Person7: Person7,
         Person8: Person8,
         Person9: Person9,
+        Person10: Person10,
+        Person11: Person11,
+        Person12: Person12,
+        Person13: Person13,
+        Person14: Person14,
+        Person15: Person15,
+        Person16: Person16,
+        Person17: Person17,
+        Person18: Person18,
+        Person19: Person19,
         Punkte0: Punkte0,
         Punkte1: Punkte1,
         Punkte2: Punkte2,
@@ -86,11 +116,21 @@ app.get("/leaderboard", function (req, res) {
         Punkte6: Punkte6,
         Punkte7: Punkte7,
         Punkte8: Punkte8,
-        Punkte9: Punkte9
+        Punkte9: Punkte9,
+        Punkte10: Punkte0,
+        Punkte11: Punkte11,
+        Punkte12: Punkte12,
+        Punkte13: Punkte13,
+        Punkte14: Punkte14,
+        Punkte15: Punkte15,
+        Punkte16: Punkte16,
+        Punkte17: Punkte17,
+        Punkte18: Punkte18,
+        Punkte19: Punkte19
       });
     }
 
-    var leaderboard = dbo.collection("Punkte").find({ Punkte: { $exists: true } }).sort({ Punkte: -1 }).limit(10).toArray()
+    var leaderboard = dbo.collection("Punkte").find({ Punkte: { $exists: true } }).sort({ Punkte: -1 }).limit(20).toArray()
 
     leaderboard.then(promise_go_away)
     db.close();
@@ -101,7 +141,7 @@ app.get("/leaderboard", function (req, res) {
 app.get("/thanks", function (req, res) {
   res.render("thanku", {
     title: "Danke",
-    message: "Vielen Dank für deine Teilnahme!s",
+    message: "Vielen Dank für deine Teilnahme!",
   });
   return res.status(1000);
 });
@@ -172,7 +212,7 @@ app.post("/status", function (req, res) {
       });
     }
 
-    var status = dbo.collection("Punkte").find({ Punkte: { $lt: parseInt(req.body.code, 10) } }).toArray();
+    var status = dbo.collection("Punkte").find({ Punkte: { $lt: parseFloat(req.body.code, 10) } }).toArray();
     var alles = dbo.collection("Punkte").find({ Punkte: { $gte: 0 } }).toArray();
 
     helpMe(status, alles).then(nopromise);
