@@ -15,7 +15,7 @@
     "express-recaptcha": "^5.0.1",
     "html2pug": "^4.0.0",
     "mongodb": "^3.3.4",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "svg-captcha": "^1.4.0",
     "trek-captcha": "^0.4.0"
   },
